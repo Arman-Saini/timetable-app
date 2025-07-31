@@ -1,0 +1,19 @@
+[build]
+base = "my-timetable"
+command = "npm run build"
+publish = "dist"
+functions = "netlify/functions"
+
+[build.environment]
+# Optional environment vars
+# NODE_VERSION = "18"
+
+[functions."*"]
+# Optional function settings
+# timeout = 10
+# memory = 256
+
+[[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200

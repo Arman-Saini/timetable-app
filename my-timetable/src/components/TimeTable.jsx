@@ -4,9 +4,18 @@ import TimeSlot from "./TimeSlot.jsx";
 import Modal from "./Modal.jsx";
 
 const neonPalette = [
-  "#00FFC3", "#FF00C8", "#00D4FF", "#FF9900",
-  "#FFFA00", "#FF4B91", "#6EFF00", "#9400FF",
-  "#00FF66", "#FF0066", "#39FF14", "#F000FF",
+  "#00FFC3",
+  "#FF00C8",
+  "#00D4FF",
+  "#FF9900",
+  "#FFFA00",
+  "#FF4B91",
+  "#6EFF00",
+  "#9400FF",
+  "#00FF66",
+  "#FF0066",
+  "#39FF14",
+  "#F000FF",
 ];
 
 const generateSubjectColors = (data) => {
@@ -81,7 +90,7 @@ const TimeTable = ({ viewMode }) => {
       <div
         className="timetable"
         style={{
-          gridTemplateColumns: `1fr repeat(${visibleDays.length}, 2fr)`,
+          gridTemplateColumns: `0.7fr repeat(${visibleDays.length}, 3fr)`,
         }}
       >
         <div className="time-col">Time</div>
@@ -124,7 +133,9 @@ const TimeTable = ({ viewMode }) => {
             };
 
             // Debug logging:
-            console.log(`🎯 Rendering: ${safeInfo.subject} on ${day}, ${safeInfo.startTime}-${safeInfo.endTime}`);
+            console.log(
+              `🎯 Rendering: ${safeInfo.subject} on ${day}, ${safeInfo.startTime}-${safeInfo.endTime}`
+            );
 
             return (
               <TimeSlot

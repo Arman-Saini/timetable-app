@@ -1,22 +1,12 @@
-// src/components/TimeTable.jsx
 import React, { useMemo, useRef, useState, useEffect } from "react";
 import { scheduleData } from "../data/schedule";
 import TimeSlot from "./TimeSlot.jsx";
 import Modal from "./Modal.jsx";
 
 const neonPalette = [
-  "#00FFC3",
-  "#FF00C8",
-  "#00D4FF",
-  "#FF9900",
-  "#FFFA00",
-  "#FF4B91",
-  "#6EFF00",
-  "#9400FF",
-  "#00FF66",
-  "#FF0066",
-  "#39FF14",
-  "#F000FF",
+  "#00FFC3", "#FF00C8", "#00D4FF", "#FF9900",
+  "#FFFA00", "#FF4B91", "#6EFF00", "#9400FF",
+  "#00FF66", "#FF0066", "#39FF14", "#F000FF",
 ];
 
 const generateSubjectColors = (data) => {
@@ -37,6 +27,7 @@ const TimeTable = ({ viewMode }) => {
   const [selectedSlot, setSelectedSlot] = useState(null);
   const [hasScrolledInitially, setHasScrolledInitially] = useState(false);
   const timetableRef = useRef(null);
+
   const subjectColors = useMemo(() => generateSubjectColors(scheduleData), []);
 
   const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
@@ -64,8 +55,6 @@ const TimeTable = ({ viewMode }) => {
       ref.scrollLeft = todayIndex * firstDayWidth * 2;
       setHasScrolledInitially(true);
     }
-
-    // 🔴 Do NOT add more scroll logic. Just scroll once and stop.
   }, [visibleDays, todayName, hasScrolledInitially]);
 
   const getGridPosition = (startTime) => {
@@ -117,25 +106,32 @@ const TimeTable = ({ viewMode }) => {
 
         {visibleDays.flatMap((day, dayIndex) => {
           const daySchedule = scheduleData[day] || [];
+
           return daySchedule.map((classInfo, idx) => {
-            const { rowStart } = getGridPosition(classInfo.startTime);
-            const rowSpan = getSlotSpan(classInfo.startTime, classInfo.endTime);
+            const safeInfo = {
+              ...classInfo,
+              day, // Inject current day for time slot highlighting
+              color: subjectColors[classInfo.subject] || "#444",
+            };
+
+            const { rowStart } = getGridPosition(safeInfo.startTime);
+            const rowSpan = getSlotSpan(safeInfo.startTime, safeInfo.endTime);
 
             const slotStyle = {
               gridColumn: dayIndex + 2,
               gridRow: `${rowStart} / span ${rowSpan}`,
-              backgroundColor: subjectColors[classInfo.subject] || "#444",
+              backgroundColor: safeInfo.color,
             };
+
+            // Debug logging:
+            console.log(`🎯 Rendering: ${safeInfo.subject} on ${day}, ${safeInfo.startTime}-${safeInfo.endTime}`);
 
             return (
               <TimeSlot
-                key={`${day}-${classInfo.subject}-${classInfo.startTime}-${classInfo.location}-${idx}`}
-                classInfo={{
-                  ...classInfo,
-                  color: subjectColors[classInfo.subject] || "#444",
-                }}
+                key={`${day}-${safeInfo.subject}-${safeInfo.startTime}-${idx}`}
+                classInfo={safeInfo}
                 slotStyle={slotStyle}
-                onClick={() => setSelectedSlot({ ...classInfo, day })}
+                onClick={() => setSelectedSlot(safeInfo)}
               />
             );
           });

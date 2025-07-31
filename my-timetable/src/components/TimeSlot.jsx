@@ -16,17 +16,52 @@ const isLightColor = (hex) => {
 };
 
 const TimeSlot = ({ classInfo, slotStyle, onClick }) => {
-  const textColor = isLightColor(classInfo.color) ? "#111" : "#fff";
+  // --- Null check ---
+  if (!classInfo) {
+    console.error("⛔ TimeSlot Error: classInfo is undefined or null.");
+    return null;
+  }
 
-  const tagText = classInfo.tag === "E" ? "Elective" : "Regular";
-  const type = classInfo.location.toLowerCase().includes("lab") ? "Lab" : "Class";
+  const {
+    subject = "Unknown",
+    location = "—",
+    tag = "?",
+    color = "#444",
+    startTime,
+    endTime,
+    day,
+  } = classInfo;
+
+  if (!startTime || !endTime) {
+    console.error(`⛔ TimeSlot Error: Missing startTime or endTime for subject "${subject}".`, classInfo);
+  }
+
+  if (!day) {
+    console.warn(`⚠️ TimeSlot Warning: Missing day for subject "${subject}".`, classInfo);
+  }
+
+  const textColor = isLightColor(color) ? "#111" : "#fff";
+  const tagText = tag === "E" ? "Elective" : "Regular";
+  const type = location.toLowerCase().includes("lab") ? "Lab" : "Class";
+
+  const now = new Date();
+  const currentTime = now.toTimeString().slice(0, 5); // "HH:MM"
+  const todayName = now.toLocaleDateString("en-US", { weekday: "long" });
+  const isToday = todayName === day;
+
+  const isCurrentSlot =
+    isToday &&
+    startTime &&
+    endTime &&
+    currentTime >= startTime &&
+    currentTime < endTime;
 
   return (
     <div
       className="time-slot"
       style={{
         ...slotStyle,
-        backgroundColor: classInfo.color,
+        backgroundColor: color,
         color: textColor,
         cursor: "pointer",
         borderRadius: "10px",
@@ -37,19 +72,37 @@ const TimeSlot = ({ classInfo, slotStyle, onClick }) => {
         justifyContent: "center",
         gap: "2px",
         fontSize: "0.8rem",
-        lineHeight: 1.2
+        lineHeight: 1.2,
+        boxShadow: isCurrentSlot
+          ? "0 0 10px 2px rgba(255, 255, 255, 0.6), 0 0 20px 4px #00ffd5"
+          : undefined,
+        position: "relative",
       }}
       onClick={onClick}
     >
-      <div style={{ fontWeight: "bold", fontSize: "1rem" }}>
-        {classInfo.subject}
-      </div>
+      <div style={{ fontWeight: "bold", fontSize: "1rem" }}>{subject}</div>
       <div style={{ opacity: 0.9, fontSize: "0.75rem" }}>
-        {classInfo.location} · {type} · {tagText} ({classInfo.tag})
+        {location} · {type} · {tagText} ({tag})
       </div>
       <div style={{ opacity: 0.8, fontSize: "0.7rem" }}>
-        {classInfo.startTime} - {classInfo.endTime}
+        {startTime || "--:--"} - {endTime || "--:--"}
       </div>
+      {isCurrentSlot && (
+        <div
+          style={{
+            position: "absolute",
+            bottom: 4,
+            right: 6,
+            fontSize: "0.7rem",
+            opacity: 0.8,
+            backgroundColor: "rgba(0,0,0,0.4)",
+            padding: "2px 6px",
+            borderRadius: "6px",
+          }}
+        >
+          {currentTime}
+        </div>
+      )}
     </div>
   );
 };

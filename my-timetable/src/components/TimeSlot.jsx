@@ -6,7 +6,10 @@ const isLightColor = (hex) => {
   if (!hex || typeof hex !== "string") return false;
   hex = hex.replace("#", "");
   if (hex.length === 3) {
-    hex = hex.split("").map((c) => c + c).join("");
+    hex = hex
+      .split("")
+      .map((c) => c + c)
+      .join("");
   }
   const r = parseInt(hex.substring(0, 2), 16);
   const g = parseInt(hex.substring(2, 4), 16);
@@ -33,16 +36,23 @@ const TimeSlot = ({ classInfo, slotStyle, onClick }) => {
   } = classInfo;
 
   if (!startTime || !endTime) {
-    console.error(`⛔ TimeSlot Error: Missing startTime or endTime for subject "${subject}".`, classInfo);
+    console.error(
+      `⛔ TimeSlot Error: Missing startTime or endTime for subject "${subject}".`,
+      classInfo
+    );
   }
 
   if (!day) {
-    console.warn(`⚠️ TimeSlot Warning: Missing day for subject "${subject}".`, classInfo);
+    console.warn(
+      `⚠️ TimeSlot Warning: Missing day for subject "${subject}".`,
+      classInfo
+    );
   }
 
   const textColor = isLightColor(color) ? "#111" : "#fff";
   const tagText = tag === "E" ? "Elective" : "Regular";
-  const type = location.toLowerCase().includes("lab") ? "Lab" : "Class";
+  const type = classInfo.type === "Lab" ? "Lab" : "Class";
+
 
   const now = new Date();
   const currentTime = now.toTimeString().slice(0, 5); // "HH:MM"

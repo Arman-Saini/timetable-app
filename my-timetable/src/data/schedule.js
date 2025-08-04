@@ -38,8 +38,8 @@ export const scheduleData = {
     },
     {
       subject: "SE",
-      startTime: "11:20",
-      endTime: "12:10",
+      startTime: "08:50",
+      endTime: "09:40",
       location: "LT-401",
       type: "Class",
       tag: "Regular"
@@ -81,7 +81,7 @@ export const scheduleData = {
     {
       subject: "Edge AI",
       startTime: "08:00",
-      endTime: "9:40",
+      endTime: "09:40",
       location: "Somewhere",
       type: "Lab",
       tag: "Elective"

@@ -3,7 +3,7 @@
 export const scheduleData = {
   "Monday": [
     {
-      subject: "UCS503",
+      subject: "CN",
       startTime: "09:40",
       endTime: "10:30",
       location: "LT401",
@@ -11,7 +11,7 @@ export const scheduleData = {
       tag: "Regular"
     },
     {
-      subject: "UCS503",
+      subject: "SE",
       startTime: "10:30",
       endTime: "11:20",
       location: "LT401",
@@ -25,19 +25,11 @@ export const scheduleData = {
       location: "T-205",
       type: "Class",
       tag: "Elective"
-    },
-    {
-      subject: "Edge AI",
-      startTime: "15:30",
-      endTime: "17:10",
-      location: "LP-110",
-      type: "Class",
-      tag: "Elective"
     }
   ],
   "Tuesday": [
     {
-      subject: "UCS510",
+      subject: "CAO",
       startTime: "08:00",
       endTime: "8:50",
       location: "LT-401",
@@ -45,7 +37,7 @@ export const scheduleData = {
       tag: "Regular"
     },
     {
-      subject: "UCS503",
+      subject: "SE",
       startTime: "11:20",
       endTime: "12:10",
       location: "LT-401",
@@ -53,7 +45,7 @@ export const scheduleData = {
       tag: "Regular"
     },
     {
-      subject: "UCS503",
+      subject: "SE",
       startTime: "09:40",
       endTime: "11:20",
       location: "SE-1",
@@ -61,7 +53,7 @@ export const scheduleData = {
       tag: "Regular"
     },
     {
-      subject: "UCS414",
+      subject: "CN",
       startTime: "13:00",
       endTime: "13:50",
       location: "LT-402",
@@ -69,7 +61,7 @@ export const scheduleData = {
       tag: "Regular"
     },
     {
-      subject: "UML501",
+      subject: "ML",
       startTime: "13:50",
       endTime: "14:40",
       location: "LT-402",
@@ -77,7 +69,7 @@ export const scheduleData = {
       tag: "Regular"
     },
     {
-      subject: "UCS5615",
+      subject: "DIP",
       startTime: "14:40",
       endTime: "15:30",
       location: "LT-402",
@@ -87,7 +79,15 @@ export const scheduleData = {
   ],
   "Wednesday": [
     {
-      subject: "UCS414",
+      subject: "Edge AI",
+      startTime: "08:00",
+      endTime: "9:40",
+      location: "Somewhere",
+      type: "Lab",
+      tag: "Elective"
+    },
+    {
+      subject: "CN",
       startTime: "09:40",
       endTime: "11:20",
       location: "IS-2",
@@ -95,7 +95,7 @@ export const scheduleData = {
       tag: "Regular"
     },
     {
-      subject: "UCS414",
+      subject: "CN",
       startTime: "11:20",
       endTime: "12:10",
       location: "LT-401",
@@ -103,7 +103,7 @@ export const scheduleData = {
       tag: "Regular"
     },
     {
-      subject: "UCS5615",
+      subject: "DIP",
       startTime: "12:10",
       endTime: "13:00",
       location: "LT-401",
@@ -111,7 +111,7 @@ export const scheduleData = {
       tag: "Regular"
     },
     {
-      subject: "UCS5615",
+      subject: "DIP",
       startTime: "13:50",
       endTime: "15:30",
       location: "CG-1",
@@ -137,7 +137,7 @@ export const scheduleData = {
       tag: "Elective"
     },
     {
-      subject: "UML501",
+      subject: "ML",
       startTime: "13:50",
       endTime: "15:30",
       location: "ML-Lab",
@@ -145,7 +145,7 @@ export const scheduleData = {
       tag: "Regular"
     },
     {
-      subject: "UML501",
+      subject: "ML",
       startTime: "15:30",
       endTime: "16:20",
       location: "LT-402",
@@ -153,7 +153,7 @@ export const scheduleData = {
       tag: "Regular"
     },
     {
-      subject: "UCS510",
+      subject: "CAO",
       startTime: "16:20",
       endTime: "17:10",
       location: "LT-402",
@@ -163,7 +163,7 @@ export const scheduleData = {
   ],
   "Friday": [
     {
-      subject: "UCS615",
+      subject: "DIP",
       startTime: "11:20",
       endTime: "12:10",
       location: "C-301",
@@ -171,7 +171,7 @@ export const scheduleData = {
       tag: "Regular"
     },
     {
-      subject: "UML501",
+      subject: "ML",
       startTime: "12:10",
       endTime: "13:00",
       location: "LT-402",
@@ -179,15 +179,7 @@ export const scheduleData = {
       tag: "Regular"
     },
     {
-      subject: "Edge AI",
-      startTime: "13:50",
-      endTime: "15:30",
-      location: "Somewhere",
-      type: "Lab",
-      tag: "Elective"
-    },
-    {
-      subject: "UCS414",
+      subject: "CN",
       startTime: "15:30",
       endTime: "16:20",
       location: "LT-401",
@@ -195,7 +187,7 @@ export const scheduleData = {
       tag: "Regular"
     },
     {
-      subject: "UCS503",
+      subject: "SE",
       startTime: "16:20",
       endTime: "17:10",
       location: "LT-401",

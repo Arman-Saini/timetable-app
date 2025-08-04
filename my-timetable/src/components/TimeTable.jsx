@@ -4,7 +4,7 @@ import TimeSlot from "./TimeSlot.jsx";
 import Modal from "./Modal.jsx";
 
 const neonPalette = [
-  "#00FFC3",
+  // "#00FFC3",
   "#FF00C8",
   "#00D4FF",
   "#FF9900",

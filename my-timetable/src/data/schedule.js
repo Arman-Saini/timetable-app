@@ -3,7 +3,7 @@
 export const scheduleData = {
   "Monday": [
     {
-      subject: "CN",
+      subject: "CAO",
       startTime: "09:40",
       endTime: "10:30",
       location: "LT401",
